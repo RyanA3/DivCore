@@ -1,0 +1,7 @@
+chat:
+ chat-group: "default"
+ chat-format: "group"
+ chat-color: "group"
+ prefix: "%group%"
+ suffix: "%group%"
+ name-color: "group"

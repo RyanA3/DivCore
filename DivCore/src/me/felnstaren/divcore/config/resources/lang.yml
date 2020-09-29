@@ -1,0 +1,59 @@
+#HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+#          DIVCORE LANGUAGE CONFIG         H
+#           Plugin by Felnstaren           H
+#HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+
+#===============================================
+# > INFO                                       >
+#   Use this config to customize plugin messages
+# to your liking, or to change the language used
+# to something your server prefers.
+#
+#===============================================
+# > FORMATTING                                 > 
+#   Use the '&' symbol for color coding,
+# &0 -> Black; &1 -> Dark Blue; &2 -> Dark Green
+# &3 -> Dark Aqua; &4 -> Dark Red; &5 -> Purple
+# &6 -> Gold; &7 -> Light Gray; &8 -> Gray;
+# &9 -> Blue; &a -> Light Green; &b -> Aqua;
+# &c -> Red; &d -> Pink; &e -> Yellow;
+# &f -> White;
+#
+#   The following are "message variables" and
+# will be replaced with the appropriate value
+# when they are sent.
+# [Permission]
+# [Player]
+# [Argument]
+#
+#   Use '\n' to add a line break, making the
+# message continue on the next line
+#
+#===============================================
+
+
+#Error Messages
+err:
+ invalid-command: "&cIncorrect command usage."
+ no-permission: "&cYou do not have permission to &7[Permission]&c!"
+ player-not-found: "&7[Player] &cis not online at the moment."
+ group-not-found: "&7[Argument] &cis not a chat group."
+
+#Info
+ifo:
+ will-reload: "&7Reloading the config and lang files..."
+ 
+
+#Commands
+cmd:
+ dchat-master-usage: "&7 --- &8[&9DivCore Chat&8]&7 --- \n&a/dchat set chat-color <Color> <Player=You>    
+\n&a/dchat set chat-format <Format> <Player=You>
+\n&a/dchat set chat-group <Name> <Player=You>
+\n&a/dchat set prefix <Prefix> <Player=You>
+\n&a/dchat set suffix <Suffix> <Player=You>
+\n&a/dchat set name-color <Color> <Player=You>"
+
+
+#UI
+menu:
+ 

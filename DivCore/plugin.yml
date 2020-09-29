@@ -1,0 +1,20 @@
+name: DivCore
+main: me.felnstaren.divcore.DivCore
+version: 0.1a
+author: Felnstaren
+description: Server development utilities
+api-version: 1.16
+
+commands:
+ dchat:
+  aliases: [dc]
+  description: DivCore base chat command
+ shrug:
+  aliases: []
+  description: I dunno
+ tableflip:
+  aliases: [flip]
+  description: REEE
+ tableunflip: 
+  aliases: [unflip]
+  description: get rekt skrub

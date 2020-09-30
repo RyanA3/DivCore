@@ -27,6 +27,8 @@ chat-groups:
   name-color: "#AAAAFF"
 
 
+ping-color: "#77FFAA"
+
 # -------------------------------------|
 # Player Join/Leave Message Formatting |
 # -------------------------------------|

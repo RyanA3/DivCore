@@ -21,12 +21,14 @@ public class Options {
 		join_format = data.getString("join-format");
 		leave_format = data.getString("leave-format");
 		player_list_format = data.getString("player-list.player-format");
+		
+		ping_color = data.getString("ping-color");
 	}
 	
 	public static String join_format = "%prefix%%name-color%%player%%suffix% &7has joined the game";
 	public static String leave_format = "%prefix%%name-color%%player%%suffix% &7has left the game";
 	public static String player_list_format = "%prefix%%name-color%%player%%suffix%";
 	
-	public static String ping_color = "#0C0";
+	public static String ping_color = "#00CC00";
 	
 }

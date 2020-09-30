@@ -8,6 +8,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import me.felnstaren.divcore.config.ControlCharacters;
 import me.felnstaren.divcore.config.DataPlayer;
+import me.felnstaren.divcore.config.Options;
 import me.felnstaren.divcore.util.Message;
 import me.felnstaren.divcore.util.Messenger;
 
@@ -41,7 +42,13 @@ public class ChatInterceptor implements Listener {
 			event.setCancelled(true);
 			Message build_message = Messenger.colorJSON(format);
 			String built_message = build_message.build();
+			
 			for(Player lp : Bukkit.getOnlinePlayers()) {
+				if(message.contains(lp.getDisplayName()) && !lp.equals(player)) 
+					built_message = Messenger.colorJSON(format.replace(lp.getName(), Options.ping_color + lp.getName() + dp.getChatColor())).build();
+				else
+					built_message = build_message.build();
+					
 				if(Messenger.sendJSON(lp, built_message) == 0) continue;
 				player.sendMessage(Messenger.color("&cError formatting JSON message: Invalid return character use! Notify an administrator if you aren't one! This may be an error due to invalid configuration."));
 				break;

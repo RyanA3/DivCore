@@ -27,4 +27,6 @@ public class Options {
 	public static String leave_format = "%prefix%%name-color%%player%%suffix% &7has left the game";
 	public static String player_list_format = "%prefix%%name-color%%player%%suffix%";
 	
+	public static String ping_color = "#0C0";
+	
 }

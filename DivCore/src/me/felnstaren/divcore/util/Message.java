@@ -6,7 +6,10 @@ import org.bukkit.ChatColor;
 
 public class Message {
 
-	private ArrayList<String> components = new ArrayList<String>();
+	private ArrayList<String> components;
+	
+	public Message() { this.components = new ArrayList<String>(); };
+	public Message(ArrayList<String> components) { this.components = components; };
 	
 
 	public Message add(String add) {

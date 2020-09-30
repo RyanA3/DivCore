@@ -5,9 +5,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.felnstaren.divcore.command.dchat.DChatMaster;
-import me.felnstaren.divcore.command.standalone.ShrugCommand;
-import me.felnstaren.divcore.command.standalone.TableFlipCommand;
-import me.felnstaren.divcore.command.standalone.TableUnflipCommand;
+import me.felnstaren.divcore.command.standalone.EmoteCommandRegister;
 import me.felnstaren.divcore.config.ControlCharacters;
 import me.felnstaren.divcore.config.Language;
 import me.felnstaren.divcore.config.Loader;
@@ -31,6 +29,7 @@ public class DivCore extends JavaPlugin {
 		TabListHandler.init(this, config.getConfigurationSection("player-list"));
 		ControlCharacters.init(config.getStringList("control-characters"));
 		
+		
 		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(new ChatInterceptor(), this);
 		pm.registerEvents(new JoinLeaveInterceptor(), this);
@@ -38,9 +37,9 @@ public class DivCore extends JavaPlugin {
 		DChatMaster dchat_master_command = new DChatMaster();
 		this.getCommand("dchat").setExecutor(dchat_master_command);
 		this.getCommand("dchat").setTabCompleter(dchat_master_command);
-		this.getCommand("shrug").setExecutor(new ShrugCommand());
-		this.getCommand("tableflip").setExecutor(new TableFlipCommand());
-		this.getCommand("tableunflip").setExecutor(new TableUnflipCommand());
+		
+		EmoteCommandRegister emote_command_register = new EmoteCommandRegister(ControlCharacters.getCharacters());
+		emote_command_register.register(this);
 	}
 	
 	public void onDisable() {

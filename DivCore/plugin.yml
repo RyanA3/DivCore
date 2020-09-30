@@ -9,12 +9,3 @@ commands:
  dchat:
   aliases: [dc]
   description: DivCore base chat command
- shrug:
-  aliases: []
-  description: I dunno
- tableflip:
-  aliases: [flip]
-  description: REEE
- tableunflip: 
-  aliases: [unflip]
-  description: get rekt skrub

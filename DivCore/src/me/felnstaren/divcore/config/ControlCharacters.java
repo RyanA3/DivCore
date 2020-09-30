@@ -20,4 +20,8 @@ public class ControlCharacters {
 		return formatted;
 	}
 	
+	public static HashMap<String, String> getCharacters() {
+		return replacements;
+	}
+	
 }

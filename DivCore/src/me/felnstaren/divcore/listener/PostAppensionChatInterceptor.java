@@ -8,6 +8,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import me.felnstaren.divcore.config.ControlCharacters;
 import me.felnstaren.divcore.config.DataPlayer;
+import me.felnstaren.divcore.config.Options;
 import me.felnstaren.divcore.util.Message;
 import me.felnstaren.divcore.util.Messenger;
 
@@ -21,7 +22,6 @@ public class PostAppensionChatInterceptor implements Listener {
 		Player player = event.getPlayer();
 		DataPlayer dp = new DataPlayer(player);
 
-		String post_title = dp.format("%prefix%%name-color%%player%%suffix%", true);
 		String message = ControlCharacters.format(event.getMessage());
 		
 		if((player.hasPermission("divcore.chat.format") || player.isOp()) && message.startsWith(":.")) 
@@ -30,14 +30,22 @@ public class PostAppensionChatInterceptor implements Listener {
 			message = message.replace("\\", "\\\\").replace("\"", "\\\"");
 		message = message.replace("&r", dp.getChatColor());
 		message = dp.getChatColor() + "  " + message;
+		String post_title = dp.format(dp.getChatFormat(), true).replace("%message%", message);
 		
 		Message build_message = Messenger.colorJSON(message);
-		Message build_title = Messenger.colorJSON(post_title);
+		Message build_title_message = Messenger.colorJSON(post_title);
 		
 		for(Player lp : Bukkit.getOnlinePlayers()) {
 			if(last_player == null || !last_player.equals(player))
-				Messenger.sendJSON(lp, build_title.build());
-			Messenger.sendJSON(lp, build_message.build());
+				if(post_title.contains(lp.getDisplayName()))
+					Messenger.sendJSON(lp, Messenger.colorJSON(post_title.replace(lp.getDisplayName(), Options.ping_color + lp.getDisplayName() + dp.getChatColor()), dp.getChatColor()).build());
+				else 
+					Messenger.sendJSON(lp, build_title_message.build());
+			else 
+				if(message.contains(lp.getDisplayName()))
+					Messenger.sendJSON(lp, Messenger.colorJSON(message.replace(lp.getDisplayName(), Options.ping_color + lp.getDisplayName() + dp.getChatColor()), dp.getChatColor()).build());
+				else 
+					Messenger.sendJSON(lp, build_message.build());
 		}
 		
 		last_player = player;

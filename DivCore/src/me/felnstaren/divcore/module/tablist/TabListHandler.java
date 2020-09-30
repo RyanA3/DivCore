@@ -1,4 +1,4 @@
-package me.felnstaren.divcore.tablist;
+package me.felnstaren.divcore.module.tablist;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;

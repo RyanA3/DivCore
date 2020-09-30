@@ -1,4 +1,4 @@
-package me.felnstaren.divcore.tablist;
+package me.felnstaren.divcore.module.tablist;
 
 import java.util.List;
 

@@ -15,7 +15,7 @@ import me.felnstaren.divcore.listener.ChatInterceptor;
 import me.felnstaren.divcore.listener.JoinLeaveInterceptor;
 import me.felnstaren.divcore.listener.PostAppensionChatInterceptor;
 import me.felnstaren.divcore.logger.Logger;
-import me.felnstaren.divcore.tablist.TabListHandler;
+import me.felnstaren.divcore.module.tablist.TabListHandler;
 
 public class DivCore extends JavaPlugin {
 

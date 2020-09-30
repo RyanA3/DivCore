@@ -14,17 +14,17 @@ logger-priority: INFO
 # -----------------------------|
 chat-groups:
  default:
-  chat-color: "#AA7"
+  chat-color: "#AAAA77"
   chat-format: "%prefix%%name-color%%player%%suffix%   %chat-color%%message%"
   prefix: ""
   suffix: ""
-  name-color: "#FFA"
+  name-color: "#FFFFAA"
  admin:
-  chat-color: "#77A"
+  chat-color: "#7777AA"
   chat-format: "%prefix%%name-color%%player%%suffix%   %chat-color%%message%"
-  prefix: "#99C\u24B6"
+  prefix: "#9999CC\u24B6"
   suffix: ""
-  name-color: "#AAF"
+  name-color: "#AAAAFF"
 
 
 # -------------------------------------|
@@ -50,8 +50,8 @@ player-list:
   - "&9Welcom&be&9!"
   - "&9Welcome&b!"
  footer:
-  - "#55FThere are#2F2 %online-players%#777/#C22%max-players% #55Fplayers online\n
-     TPS: #2F2%tps%#777/#2C220.00"
+  - "#5555FFThere are #22FF22%online-players%#777777/#CC2222%max-players% #5555FFplayers online\n
+     TPS: #22FF22%tps%#777777/#22CC2220.00"
 
 
 # -------------------------------|

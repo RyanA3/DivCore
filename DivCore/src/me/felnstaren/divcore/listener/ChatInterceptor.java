@@ -35,6 +35,7 @@ public class ChatInterceptor implements Listener {
 		}
 		
 		message = message.replace("&r", dp.getChatColor());
+		message = " " + message;
 		format = format.replace("%message%", message);
 		format = Messenger.color(format);
 		
@@ -45,7 +46,7 @@ public class ChatInterceptor implements Listener {
 			
 			for(Player lp : Bukkit.getOnlinePlayers()) {
 				if(message.contains(lp.getDisplayName()) && !lp.equals(player)) 
-					built_message = Messenger.colorJSON(format.replace(lp.getName(), Options.ping_color + lp.getName() + dp.getChatColor())).build();
+					built_message = Messenger.colorJSON(format.replace(lp.getName(), Options.ping_color + lp.getName() + dp.getChatColor()), dp.getChatColor()).build();
 				else
 					built_message = build_message.build();
 					

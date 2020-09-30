@@ -31,11 +31,16 @@ public class Messenger {
 	}
 	
 	public static Message colorJSON(String message) {
+		return colorJSON(message, "#FFFFFF");
+	}
+	
+	public static Message colorJSON(String message, String default_color) {
 		message = Messenger.color(message);
 		Message mbuild = new Message();
 		if(message.contains("#")) {
 			String[] components = message.split("#");
 			
+			String prev_color = default_color;
 			compl: for(String component : components) {
 				if(component.length() < 1) continue compl;
 				
@@ -52,9 +57,10 @@ public class Messenger {
 							final_color = color;
 							mbuild.add(component.replace(color, ""), final_color);
 						}
-						continue compl; 
-					} else { 
-						mbuild.add(component);
+						prev_color = final_color;
+						continue compl;
+					} else {
+						mbuild.add("#" + component, prev_color);
 						continue compl;
 					}
 				}
@@ -65,6 +71,7 @@ public class Messenger {
 	
 	public static int sendJSON(Player player, String message) {
 		try {
+			Logger.log(Level.INFO, "Send JSON\n" + message);
 			//Create the packet
 			Object component = Reflector.METHOD_CACHE.get("b").invoke(null , message);
 			Object type[] = Reflector.getNMSClass("ChatMessageType").getEnumConstants();

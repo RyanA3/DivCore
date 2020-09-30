@@ -62,11 +62,12 @@ public abstract class CommandContinuator implements CommandElement, Tabbable {
 			return tabs;
 		}
 
-		for(SubCommand sub : commands) 
+		for(SubCommand sub : commands)
 			tabs.addAll(sub.tab(sender, args, current));
 		
-		for(SubArgument arg : arguments) 
-			tabs.addAll(arg.tab(sender, args, current));
+		if(current > 0 && args[current-1].equals(label))
+			for(SubArgument arg : arguments) 
+				tabs.addAll(arg.tab(sender, args, current));
 			
 		return tabs;
 	}

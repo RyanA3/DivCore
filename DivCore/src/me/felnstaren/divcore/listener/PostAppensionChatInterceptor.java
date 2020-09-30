@@ -8,11 +8,12 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import me.felnstaren.divcore.config.ControlCharacters;
 import me.felnstaren.divcore.config.DataPlayer;
-import me.felnstaren.divcore.config.Options;
 import me.felnstaren.divcore.util.Message;
 import me.felnstaren.divcore.util.Messenger;
 
-public class ChatInterceptor implements Listener {
+public class PostAppensionChatInterceptor implements Listener {
+	
+	private Player last_player = null;
 	
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent event) {
@@ -20,7 +21,7 @@ public class ChatInterceptor implements Listener {
 		Player player = event.getPlayer();
 		DataPlayer dp = new DataPlayer(player);
 
-		String format = dp.format(dp.getChatFormat(), true);	
+		String post_title = dp.format("%prefix%%name-color%%player%%suffix%", true);
 		String message = ControlCharacters.format(event.getMessage());
 		
 		if((player.hasPermission("divcore.chat.format") || player.isOp()) && message.startsWith(":.")) 
@@ -28,21 +29,18 @@ public class ChatInterceptor implements Listener {
 		else 
 			message = message.replace("\\", "\\\\").replace("\"", "\\\"");
 		message = message.replace("&r", dp.getChatColor());
-		message = " " + message;
-		format = format.replace("%message%", message);
+		message = dp.getChatColor() + "  " + message;
 		
-		Message build_message = Messenger.colorJSON(format);
-		String built_message = build_message.build();
-
+		Message build_message = Messenger.colorJSON(message);
+		Message build_title = Messenger.colorJSON(post_title);
+		
 		for(Player lp : Bukkit.getOnlinePlayers()) {
-			String send = built_message;
-			if(message.contains(lp.getDisplayName()) && !lp.equals(player)) 
-				send = Messenger.colorJSON(format.replace(lp.getDisplayName(), Options.ping_color + lp.getDisplayName() + dp.getChatColor())).build();
-			
-			if(Messenger.sendJSON(lp, send) == 0) continue;
-			player.sendMessage(Messenger.color("&cError formatting JSON message: Invalid return character use! Notify an administrator if you aren't one! This may be an error due to invalid configuration."));
-			break;
+			if(last_player == null || !last_player.equals(player))
+				Messenger.sendJSON(lp, build_title.build());
+			Messenger.sendJSON(lp, build_message.build());
 		}
+		
+		last_player = player;
 	}
-	
+
 }

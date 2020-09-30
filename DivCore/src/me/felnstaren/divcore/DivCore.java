@@ -13,6 +13,7 @@ import me.felnstaren.divcore.config.Options;
 import me.felnstaren.divcore.config.chat.ChatGroupHandler;
 import me.felnstaren.divcore.listener.ChatInterceptor;
 import me.felnstaren.divcore.listener.JoinLeaveInterceptor;
+import me.felnstaren.divcore.listener.PostAppensionChatInterceptor;
 import me.felnstaren.divcore.logger.Logger;
 import me.felnstaren.divcore.tablist.TabListHandler;
 
@@ -31,7 +32,8 @@ public class DivCore extends JavaPlugin {
 		
 		
 		PluginManager pm = this.getServer().getPluginManager();
-		pm.registerEvents(new ChatInterceptor(), this);
+		if(Options.post_appension) pm.registerEvents(new PostAppensionChatInterceptor(), this);
+		else pm.registerEvents(new ChatInterceptor(), this);
 		pm.registerEvents(new JoinLeaveInterceptor(), this);
 		
 		DChatMaster dchat_master_command = new DChatMaster();

@@ -23,6 +23,8 @@ public class Options {
 		player_list_format = data.getString("player-list.player-format");
 		
 		ping_color = data.getString("ping-color");
+		
+		post_appension = data.getBoolean("post-appension");
 	}
 	
 	public static String join_format = "%prefix%%name-color%%player%%suffix% &7has joined the game";
@@ -30,5 +32,7 @@ public class Options {
 	public static String player_list_format = "%prefix%%name-color%%player%%suffix%";
 	
 	public static String ping_color = "#00CC00";
+	
+	public static boolean post_appension = false;
 	
 }

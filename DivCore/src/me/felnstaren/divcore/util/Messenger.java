@@ -71,7 +71,6 @@ public class Messenger {
 	
 	public static int sendJSON(Player player, String message) {
 		try {
-			Logger.log(Level.INFO, "Send JSON\n" + message);
 			//Create the packet
 			Object component = Reflector.METHOD_CACHE.get("b").invoke(null , message);
 			Object type[] = Reflector.getNMSClass("ChatMessageType").getEnumConstants();

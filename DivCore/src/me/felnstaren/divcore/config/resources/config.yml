@@ -28,6 +28,7 @@ chat-groups:
 
 
 ping-color: "#77FFAA"
+post-appension: false
 
 # -------------------------------------|
 # Player Join/Leave Message Formatting |

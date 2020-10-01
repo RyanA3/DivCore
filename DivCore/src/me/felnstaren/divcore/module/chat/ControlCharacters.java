@@ -1,4 +1,4 @@
-package me.felnstaren.divcore.config;
+package me.felnstaren.divcore.module.chat;
 
 import java.util.HashMap;
 import java.util.List;

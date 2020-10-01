@@ -1,4 +1,4 @@
-package me.felnstaren.divcore.listener;
+package me.felnstaren.divcore.module.tablist;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.felnstaren.divcore.config.DataPlayer;
 import me.felnstaren.divcore.config.Options;
-import me.felnstaren.divcore.module.tablist.TabListHandler;
 import me.felnstaren.divcore.util.Message;
 import me.felnstaren.divcore.util.Messenger;
 import me.felnstaren.divcore.util.ServerFieldFormatter;

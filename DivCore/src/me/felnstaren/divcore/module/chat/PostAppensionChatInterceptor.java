@@ -1,4 +1,4 @@
-package me.felnstaren.divcore.listener;
+package me.felnstaren.divcore.module.chat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -6,7 +6,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import me.felnstaren.divcore.config.ControlCharacters;
 import me.felnstaren.divcore.config.DataPlayer;
 import me.felnstaren.divcore.config.Options;
 import me.felnstaren.divcore.util.Message;

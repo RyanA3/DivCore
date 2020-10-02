@@ -1,6 +1,6 @@
 name: DivCore
 main: me.felnstaren.divcore.DivCore
-version: 1.0.2a
+version: 1.0.3a
 author: Felnstaren
 description: Server development utilities
 api-version: 1.16
@@ -9,3 +9,12 @@ commands:
  dchat:
   aliases: [dc]
   description: DivCore base chat command
+ seen:
+  aliases: [pinfo]
+  description: Show info about a player
+ mute:
+  aliases: []
+  description: Mute a player
+ unmute:
+  aliases: []
+  description: Unmute a player

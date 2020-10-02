@@ -42,6 +42,11 @@ public class Loader {
 		copy(file, defalt);
 		return YamlConfiguration.loadConfiguration(file);
 	}
+	
+	public static boolean fileExists(String name) {
+		File file = new File(PLUGIN.getDataFolder(), name);
+		return file.exists();
+	}
 		
 		
 	

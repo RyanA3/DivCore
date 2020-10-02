@@ -42,17 +42,30 @@ err:
 #Info
 ifo:
  will-reload: "&7Reloading the config and lang files..."
+ muted: "&cYou are muted for &6[Time]"
  
 
 #Commands
 cmd:
- dchat-master-usage: "&7 --- &8[&9DivCore Chat&8]&7 --- \n&a/dchat set chat-color <Color> <Player=You>    
+ dchat:
+  usage: "&7 --- &8[&9DivCore Chat&8]&7 --- \n&a/dchat set chat-color <Color> <Player=You>    
 \n&a/dchat set chat-format <Format> <Player=You>
 \n&a/dchat set chat-group <Name> <Player=You>
 \n&a/dchat set prefix <Prefix> <Player=You>
 \n&a/dchat set suffix <Suffix> <Player=You>
 \n&a/dchat set name-color <Color> <Player=You>"
-
+ seen: 
+  usage: "&c/seen <player>"
+  output: "&7[Player] \n  &8playtime; &7[Play Time] \n  &8was last seen &a[Last Seen] \n  &8joined  &7[Time Since First Join] ago"
+ mute:
+  usage: "&c/mute <player> [time]"
+  muter-output: "&cYou muted &6[Player] &cfor &6[Time]"
+  mutee-output: "&cYou have been muted by &6[Player] &cfor &6[Time]"
+ unmute:
+  usage: "&c/unmute <player>"
+  muter-output: "&cYou unmuted &6[Player]"
+  mutee-output: "&cYou have been unmuted by &c[Player]"
+  player-not-muted: "&6[Player] &cisn't muted"
 
 #UI
 menu:

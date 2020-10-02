@@ -9,7 +9,7 @@ import me.felnstaren.divcore.command.SubArgument;
 import me.felnstaren.divcore.config.ChatVar;
 import me.felnstaren.divcore.config.DataPlayer;
 import me.felnstaren.divcore.config.Language;
-import me.felnstaren.divcore.util.Messenger;
+import me.felnstaren.divcore.util.chat.Messenger;
 
 public class ChatSetPlayerFormatArgument extends SubArgument {
 

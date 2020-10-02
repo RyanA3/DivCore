@@ -9,9 +9,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.felnstaren.divcore.config.DataPlayer;
 import me.felnstaren.divcore.config.Options;
-import me.felnstaren.divcore.util.Message;
-import me.felnstaren.divcore.util.Messenger;
 import me.felnstaren.divcore.util.ServerFieldFormatter;
+import me.felnstaren.divcore.util.chat.Message;
+import me.felnstaren.divcore.util.chat.Messenger;
 
 public class JoinLeaveInterceptor implements Listener {
 
@@ -20,7 +20,7 @@ public class JoinLeaveInterceptor implements Listener {
 		Player player = event.getPlayer();
 		DataPlayer dp = new DataPlayer(player);
 		
-		String format = dp.format(Options.join_format, true);
+		String format = dp.format(Options.join_format, player.getDisplayName(), true);
 		
 		if(format.contains("#")) {
 			event.setJoinMessage("");
@@ -30,7 +30,7 @@ public class JoinLeaveInterceptor implements Listener {
 		} else
 			event.setJoinMessage(Messenger.color(format));
 		
-		String list_format = dp.format(Options.player_list_format, false);
+		String list_format = dp.format(Options.player_list_format, player.getDisplayName(), false);
 		player.setPlayerListName(Messenger.color(list_format));
 		
 		String built_header = Messenger.color(ServerFieldFormatter.format(TabListHandler.getInstance().getHeader()));
@@ -45,7 +45,7 @@ public class JoinLeaveInterceptor implements Listener {
 		Player player = event.getPlayer();
 		DataPlayer dp = new DataPlayer(player);
 		
-		String format = dp.format(Options.leave_format, true);
+		String format = dp.format(Options.leave_format, player.getDisplayName(), true);
 		
 		if(format.contains("#")) {
 			event.setQuitMessage("");

@@ -4,7 +4,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import me.felnstaren.divcore.logger.Level;
 import me.felnstaren.divcore.logger.Logger;
-import me.felnstaren.divcore.util.Messenger;
+import me.felnstaren.divcore.util.chat.Messenger;
 
 public class Language {
 	

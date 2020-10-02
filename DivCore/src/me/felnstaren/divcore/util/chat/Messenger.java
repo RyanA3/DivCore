@@ -1,4 +1,4 @@
-package me.felnstaren.divcore.util;
+package me.felnstaren.divcore.util.chat;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 
 import me.felnstaren.divcore.logger.Level;
 import me.felnstaren.divcore.logger.Logger;
+import me.felnstaren.divcore.util.reflection.Packeteer;
+import me.felnstaren.divcore.util.reflection.Reflector;
 
 public class Messenger {
 

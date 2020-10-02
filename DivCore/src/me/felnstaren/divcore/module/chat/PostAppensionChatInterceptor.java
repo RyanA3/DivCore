@@ -8,8 +8,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import me.felnstaren.divcore.config.DataPlayer;
 import me.felnstaren.divcore.config.Options;
-import me.felnstaren.divcore.util.Message;
-import me.felnstaren.divcore.util.Messenger;
+import me.felnstaren.divcore.util.chat.Message;
+import me.felnstaren.divcore.util.chat.Messenger;
 
 public class PostAppensionChatInterceptor implements Listener {
 	
@@ -29,7 +29,7 @@ public class PostAppensionChatInterceptor implements Listener {
 			message = message.replace("\\", "\\\\").replace("\"", "\\\"");
 		message = message.replace("&r", dp.getChatColor());
 		message = dp.getChatColor() + "  " + message;
-		String post_title = dp.format(dp.getChatFormat(), true).replace("%message%", message);
+		String post_title = dp.format(dp.getChatFormat(), player.getDisplayName(), true).replace("%message%", message);
 		
 		Message build_message = Messenger.colorJSON(message);
 		Message build_title_message = Messenger.colorJSON(post_title);

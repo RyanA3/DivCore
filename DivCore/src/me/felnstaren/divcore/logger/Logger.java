@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.felnstaren.divcore.util.Messenger;
+import me.felnstaren.divcore.util.chat.Messenger;
 
 public class Logger {
 	

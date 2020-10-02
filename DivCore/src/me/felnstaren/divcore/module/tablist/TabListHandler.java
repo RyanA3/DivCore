@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.felnstaren.divcore.util.Messenger;
 import me.felnstaren.divcore.util.ServerFieldFormatter;
+import me.felnstaren.divcore.util.chat.Messenger;
 
 public class TabListHandler {
 	

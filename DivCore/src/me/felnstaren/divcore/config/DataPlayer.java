@@ -1,19 +1,20 @@
 package me.felnstaren.divcore.config;
 
+import java.util.UUID;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import me.felnstaren.divcore.config.chat.ChatGroupHandler;
 import me.felnstaren.divcore.logger.Level;
 import me.felnstaren.divcore.logger.Logger;
-import me.felnstaren.divcore.util.Message;
-import me.felnstaren.divcore.util.Messenger;
+import me.felnstaren.divcore.util.time.Time;
 
 public class DataPlayer {
 
 	private YamlConfiguration data;
 	private String path;
-	private Player player;
+	private UUID uuid;
 	
 	private String chat_group = "default";
 	private String chat_format = "group";
@@ -21,11 +22,20 @@ public class DataPlayer {
 	private String prefix = "%group%";
 	private String suffix = "%group%";
 	private String name_color = "group";
+	private Time muted = new Time(0, 0, 0, 0, 0);
+	
+	public DataPlayer(UUID uuid) {
+		init(uuid);
+	}
 	
 	public DataPlayer(Player player) {
-		this.player = player;
-		Logger.log(Level.DEBUG, "Loading player with name " + player.getDisplayName());
-		this.path = "playerdata/" + player.getUniqueId() + ".yml";
+		init(player.getUniqueId());
+	}
+	
+	private void init(UUID uuid) {
+		this.uuid = uuid;
+		Logger.log(Level.DEBUG, "Loading player with name " + uuid);
+		this.path = "playerdata/" + uuid + ".yml";
 		load(Loader.loadOrDefault(path, "default_player.yml"));
 		
 		chat_group = data.getString("chat.chat-group");
@@ -34,6 +44,8 @@ public class DataPlayer {
 		prefix = data.getString("chat.prefix");
 		suffix = data.getString("chat.suffix");
 		name_color = data.getString("chat.name-color");
+		
+		muted = new Time(data.getString("punishment.muted", "0s"));
 		
 		save();
 	}
@@ -52,27 +64,34 @@ public class DataPlayer {
 	
 	
 	
-	public String format(String format, boolean do_hex) {
+	public String format(String format, String name, boolean do_hex) {
 		String formatted = format;
 		formatted = formatted.replace("%prefix%", !do_hex && getPrefix().contains("#") ? "" : getPrefix());
 		formatted = formatted.replace("%name-color%", !do_hex && getNameColor().contains("#") ? "" : getNameColor());
-		formatted = formatted.replace("%player%", player.getDisplayName());
+		formatted = formatted.replace("%player%", name);
 		formatted = formatted.replace("%suffix%", !do_hex && getSuffix().contains("#") ? "" : getSuffix());
 		formatted = formatted.replace("%chat-color%", !do_hex && getChatColor().contains("#") ? "" : getChatColor());
 		formatted = formatted.replace("%chat-group%", getChatGroup());
 		return formatted;
 	}
 	
-	public int sendChatMessage(String message, DataPlayer sender) {
+	/*public int sendChatMessage(String message, DataPlayer sender) {
+		Player player = Bukkit.getPlayer(this.player.getUniqueId());
+		if(player == null) return 2;
+		
 		String send = message;
 		if(!player.equals(sender.getPlayer()) && message.contains(player.getDisplayName()))
 			send = send.replace(player.getDisplayName(), Options.ping_color + player.getDisplayName() + sender.getChatColor());
 		
 		Message build = Messenger.colorJSON(send);
 		return Messenger.sendJSON(player, build.build());
+	}*/
+	
+	
+	
+	public YamlConfiguration getData() {
+		return data;
 	}
-	
-	
 	
 	public String getChatGroup() {
 		return chat_group;
@@ -98,8 +117,25 @@ public class DataPlayer {
 		return name_color.equals("group") ? ChatGroupHandler.getInstance().getChatGroup(chat_group).getNameColor() : name_color;
 	}
 	
-	public Player getPlayer() {
-		return player;
+	public UUID getUUID() {
+		return uuid;
+	}
+	
+	
+	
+	public boolean isMuted() {
+		return muted.isLaterThan(new Time());
+	}
+	
+	public Time getMutedUntil() {
+		return muted;
+	}
+
+	
+	
+	
+	public static boolean hasGenerated(UUID uuid) {
+		return Loader.fileExists("playerdata/" + uuid + ".yml");
 	}
 	
 }

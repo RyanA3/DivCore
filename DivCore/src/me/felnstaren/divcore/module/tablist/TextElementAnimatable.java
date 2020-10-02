@@ -2,7 +2,7 @@ package me.felnstaren.divcore.module.tablist;
 
 import java.util.List;
 
-import me.felnstaren.divcore.util.Messenger;
+import me.felnstaren.divcore.util.chat.Messenger;
 
 public class TextElementAnimatable {
 

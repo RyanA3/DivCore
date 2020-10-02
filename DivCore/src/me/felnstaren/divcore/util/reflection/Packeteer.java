@@ -1,4 +1,4 @@
-package me.felnstaren.divcore.util;
+package me.felnstaren.divcore.util.reflection;
 
 import java.lang.reflect.InvocationTargetException;
 

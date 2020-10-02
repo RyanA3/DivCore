@@ -6,5 +6,6 @@ import org.bukkit.plugin.Plugin;
 public interface Module {
 
 	public void init(Plugin plugin, YamlConfiguration data);
+	public void disable();
 	
 }

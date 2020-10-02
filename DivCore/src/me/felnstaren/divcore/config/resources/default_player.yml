@@ -5,3 +5,11 @@ chat:
  prefix: "%group%"
  suffix: "%group%"
  name-color: "group"
+
+metrics:
+ first-join-date: none
+ join-date: none
+ play-time: none
+
+punishment:
+ muted: 0s

@@ -1,6 +1,7 @@
-package me.felnstaren.divcore.util;
+package me.felnstaren.divcore.util.chat;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.ChatColor;
 
@@ -23,18 +24,29 @@ public class Message {
 	}
 	
 	public Message add(String add, String hex_color) {
+		hex_color = hex_color.replace("#", "");
 		components.add("{\"text\":\"" + add + "\",\"color\":\"#" + hex_color + "\"}");
 		return this;
 	}
 	
 	public Message insert(String add, String hex_color, int index) {
+		hex_color = hex_color.replace("#", "");
 		components.add(index, "{\"text\":\"" + add + "\",\"color\":\"#" + hex_color + "\"}");
 		return this;
 	}
 	
 	public Message append(Message message) {
-		components.addAll(message.getComponents());
+		return copy().addAll(message.getComponents());
+	}
+	
+	public Message addAll(List<String> components) {
+		this.components.addAll(components);
 		return this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Message copy() {
+		return new Message((ArrayList<String>) components.clone());
 	}
 	
 	public String build() {

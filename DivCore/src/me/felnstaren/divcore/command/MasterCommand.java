@@ -10,7 +10,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
-import me.felnstaren.divcore.util.Messenger;
+import me.felnstaren.divcore.util.chat.Messenger;
 
 public abstract class MasterCommand extends CommandContinuator implements CommandExecutor, TabCompleter {
 	

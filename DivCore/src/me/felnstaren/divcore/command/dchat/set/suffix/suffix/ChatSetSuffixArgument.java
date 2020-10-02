@@ -7,7 +7,7 @@ import me.felnstaren.divcore.command.CommandStub;
 import me.felnstaren.divcore.command.SubArgument;
 import me.felnstaren.divcore.command.dchat.set.suffix.suffix.player.ChatSetPlayerSuffixArgument;
 import me.felnstaren.divcore.config.DataPlayer;
-import me.felnstaren.divcore.util.Messenger;
+import me.felnstaren.divcore.util.chat.Messenger;
 
 public class ChatSetSuffixArgument extends SubArgument {
 

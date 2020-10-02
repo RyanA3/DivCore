@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.bukkit.Bukkit;
 
+import me.felnstaren.divcore.util.reflection.Reflector;
+
 public class ServerFieldFormatter {
 
 	public static String format(String format) {

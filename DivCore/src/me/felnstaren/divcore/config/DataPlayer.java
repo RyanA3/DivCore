@@ -38,12 +38,12 @@ public class DataPlayer {
 		this.path = "playerdata/" + uuid + ".yml";
 		load(Loader.loadOrDefault(path, "default_player.yml"));
 		
-		chat_group = data.getString("chat.chat-group");
-		chat_format = data.getString("chat.chat-format");
-		chat_color = data.getString("chat.chat-color");
-		prefix = data.getString("chat.prefix");
-		suffix = data.getString("chat.suffix");
-		name_color = data.getString("chat.name-color");
+		chat_group = data.getString("chat.chat-group", "group");
+		chat_format = data.getString("chat.chat-format", "group");
+		chat_color = data.getString("chat.chat-color", "group");
+		prefix = data.getString("chat.prefix", "%group%");
+		suffix = data.getString("chat.suffix", "%group%");
+		name_color = data.getString("chat.name-color", "group");
 		
 		muted = new Time(data.getString("punishment.muted", "0s"));
 		

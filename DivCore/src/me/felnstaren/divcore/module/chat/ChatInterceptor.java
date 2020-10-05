@@ -62,7 +62,7 @@ public class ChatInterceptor implements Listener {
 	private Message perPlayerPingafy(DataPlayer sender, Player receiver, String message) {
 		String name = receiver.getDisplayName();
 		int name_length = name.length();
-		int[] ping_poses = ArrayUtil.getIndexesOf(message, name);
+		int[] ping_poses = ArrayUtil.getIndicies(message, name);
 		
 		Message new_message = new Message();
 		for(int i = 0; i < ping_poses.length; i++) {

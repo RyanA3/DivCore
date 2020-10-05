@@ -6,17 +6,25 @@ import org.bukkit.entity.Player;
 
 import me.felnstaren.divcore.logger.Level;
 import me.felnstaren.divcore.logger.Logger;
+import me.felnstaren.divcore.util.ArrayUtil;
 import me.felnstaren.divcore.util.reflection.Packeteer;
 import me.felnstaren.divcore.util.reflection.Reflector;
 
 public class Messenger {
 
 	private static final String HEX_CHARS = "0123456789ABCDEF";
-	
-	
+	private static final String DEFAULT_COLOR_CHARS = "0123456789abcdefklmno";
 	
 	public static String color(String message) {
-		return message.replace('&', '§');
+		char[] msg = message.toCharArray();
+		
+		for(int i = 0; i < msg.length; i++) {
+			if(msg[i] != '&') continue;
+			if(msg.length <= i + 1) break;
+			if(DEFAULT_COLOR_CHARS.contains(Character.toString(msg[i + 1])))
+				msg[i] = '§';
+		}
+		return new String(msg);
 	}
 	
 	public static String uncolor(String message) {
@@ -32,43 +40,69 @@ public class Messenger {
 		return newmsg;
 	}
 	
-	public static Message colorJSON(String message) {
-		return colorJSON(message, "#FFFFFF");
-	}
+
 	
-	public static Message colorJSON(String message, String default_color) {
-		message = Messenger.color(message);
-		Message mbuild = new Message();
-		if(message.contains("#")) {
-			String[] components = message.split("#");
-			
-			String prev_color = default_color;
-			compl: for(String component : components) {
-				if(component.length() < 1) continue compl;
-				
-				String color = "";
-				for(int i = 0; i < component.length(); i++) {
-					if(i < 6 && HEX_CHARS.contains(Character.toString(component.charAt(i)))) {
-						color = color + component.charAt(i); 
-					} else if(color.length() > 2 && color.length() < 7) {
-						String final_color = "";
-						if(color.length() > 2 && color.length() < 6) {
-							for(int j = 0; j < 3; j++) final_color += Character.toString(color.charAt(j)) + Character.toString(color.charAt(j));
-							mbuild.add(component.replace(color.subSequence(0, 3), ""), final_color);
-						} else {
-							final_color = color;
-							mbuild.add(component.replace(color, ""), final_color);
-						}
-						prev_color = final_color;
-						continue compl;
-					} else {
-						mbuild.add("#" + component, prev_color);
-						continue compl;
-					}
-				}
+	public static Message colorJSON(String message) {
+		message = color(message);
+		
+		int[] possible_color_positions = ArrayUtil.getIndicies(message, "#");
+		String[] possible_colors = new String[possible_color_positions.length];
+		
+		//Find colors in message
+		for(int i = 0; i < possible_color_positions.length; i++) {
+			String color = "";
+			for(int j = 1; j < 7; j++) {
+				if(message.length() <= possible_color_positions[i] + j) break;
+				String char_at = Character.toString(message.charAt(possible_color_positions[i] + j));
+				if(HEX_CHARS.contains(char_at)) {
+					color += char_at;
+					continue;
+				} else break;
 			}
-		} else mbuild.add(message);
-		return mbuild;
+			
+			if(color.length() < 3) continue;
+			if(color.length() < 6) color = color.substring(0, 3);
+			else color = color.substring(0, 6);
+			possible_colors[i] = color;
+		}
+		
+		//Remove invalid color positions
+		int arr_length = 0;
+		for(int i = 0; i < possible_colors.length; i++) if(possible_colors[i] != null) arr_length++;
+		
+		int[] color_positions = new int[arr_length];
+		for(int i = 0, j = 0; i < possible_colors.length; i++) {
+			if(possible_colors[i] == null) continue;
+			color_positions[j++] = possible_color_positions[i];
+		}
+		
+		String[] colors = new String[arr_length];
+		for(int i = 0, j = 0; i < possible_colors.length; i++) {
+			if(possible_colors[i] == null) continue;
+			colors[j++] = possible_colors[i];
+		}
+		
+		//Split message into components to feed to the message builder
+		Message jsonmsg = new Message();
+		for(int i = 0; i < colors.length; i++) {
+			String component = "";
+			
+			if(i == colors.length - 1)
+				component = message.substring(color_positions[i] + colors[i].length() + 1, message.length());
+			else 
+				component = message.substring(color_positions[i] + colors[i].length() + 1, color_positions[i + 1]);
+			
+			//Expand color if length is 3, after clipping out the string color from the message
+			if(colors[i].length() == 3) {
+				String expanded = "";
+				for(int k = 0; k < 3; k++) expanded += Character.toString(colors[i].charAt(k)) + Character.toString(colors[i].charAt(k));
+				colors[i] = expanded;
+			}
+			
+			jsonmsg.add(component, colors[i]);
+		}
+		
+		return jsonmsg;
 	}
 	
 	public static int sendJSON(Player player, String message) {

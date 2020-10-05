@@ -37,12 +37,12 @@ public class PostAppensionChatInterceptor implements Listener {
 		for(Player lp : Bukkit.getOnlinePlayers()) {
 			if(last_player == null || !last_player.equals(player))
 				if(post_title.contains(lp.getDisplayName()))
-					Messenger.sendJSON(lp, Messenger.colorJSON(post_title.replace(lp.getDisplayName(), Options.ping_color + lp.getDisplayName() + dp.getChatColor()), dp.getChatColor()).build());
+					Messenger.sendJSON(lp, Messenger.colorJSON(post_title.replace(lp.getDisplayName(), Options.ping_color + lp.getDisplayName() + dp.getChatColor())).build());
 				else 
 					Messenger.sendJSON(lp, build_title_message.build());
 			else 
 				if(message.contains(lp.getDisplayName()))
-					Messenger.sendJSON(lp, Messenger.colorJSON(message.replace(lp.getDisplayName(), Options.ping_color + lp.getDisplayName() + dp.getChatColor()), dp.getChatColor()).build());
+					Messenger.sendJSON(lp, Messenger.colorJSON(message.replace(lp.getDisplayName(), Options.ping_color + lp.getDisplayName() + dp.getChatColor())).build());
 				else 
 					Messenger.sendJSON(lp, build_message.build());
 		}

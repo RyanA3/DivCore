@@ -20,8 +20,22 @@ public class ArrayUtil {
 		return insert(obj, arr.length, arr);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static <T> T[] removeNulls(T[] arr) {
+		int arr_length = 0;
+		for(int i = 0; i < arr.length; i++) if(arr[i] != null) arr_length++;
+		
+		T[] new_arr = (T[]) Array.newInstance(arr.getClass(), arr_length);
+		for(int i = 0, j = 0; i < arr.length; i++) {
+			if(arr[i] == null) continue;
+			new_arr[++j] = arr[i];
+		}
+		
+		return new_arr;
+	}
 	
-	public static int[] getIndexesOf(String string, String key) {
+	
+	public static int[] getIndicies(String string, String key) {
 		ArrayList<Integer> indexes = new ArrayList<Integer>();
 		
 		for(int i = 0; i < string.length(); i++) {

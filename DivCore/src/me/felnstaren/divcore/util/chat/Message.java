@@ -14,22 +14,26 @@ public class Message {
 	
 
 	public Message add(String add) {
+		if(add.equals("")) return this;
 		components.add("{\"text\":\"" + add + "\"}");
 		return this;
 	}
 	
 	public Message add(String add, ChatColor color) {
+		if(add.equals("")) return this;
 		components.add("{\"text\":\" + \"" + add + "\",\"color\":\"" + color + "\"");
 		return this;
 	}
 	
 	public Message add(String add, String hex_color) {
+		if(add.equals("")) return this;
 		hex_color = hex_color.replace("#", "");
 		components.add("{\"text\":\"" + add + "\",\"color\":\"#" + hex_color + "\"}");
 		return this;
 	}
 	
 	public Message insert(String add, String hex_color, int index) {
+		if(add.equals("")) return this;
 		hex_color = hex_color.replace("#", "");
 		components.add(index, "{\"text\":\"" + add + "\",\"color\":\"#" + hex_color + "\"}");
 		return this;

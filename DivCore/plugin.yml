@@ -1,6 +1,6 @@
 name: DivCore
 main: me.felnstaren.divcore.DivCore
-version: 1.0.3a
+version: 1.1.2a
 author: Felnstaren
 description: Server development utilities
 api-version: 1.16

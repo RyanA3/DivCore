@@ -19,6 +19,7 @@ public class ChatModule implements Module {
 		PluginManager pm = plugin.getServer().getPluginManager();
 		if(Options.post_appension) pm.registerEvents(new PostAppensionChatInterceptor(), plugin);
 		else pm.registerEvents(new ChatInterceptor(), plugin);
+		pm.registerEvents(new ChatJoinLeaveInterceptor(), plugin);
 		
 		DChatMaster dchat_master_command = new DChatMaster();
 		plugin.getServer().getPluginCommand("dchat").setExecutor(dchat_master_command);

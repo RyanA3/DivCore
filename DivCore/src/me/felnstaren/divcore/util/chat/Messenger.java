@@ -125,6 +125,10 @@ public class Messenger {
 		}
 	}
 	
+	public static int send(Player player, String message) {
+		return sendJSON(player, colorJSON(message).build());
+	}
+	
 	public static int sendJSONPlayerList(Player player, String header, String footer) {
 		try {
 			//Create the packet

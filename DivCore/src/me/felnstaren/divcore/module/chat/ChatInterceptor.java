@@ -36,10 +36,10 @@ public class ChatInterceptor implements Listener {
 		
 		Message title = Messenger.colorJSON(format.replace("%message%", ""));
 		Message msg;
-		if((player.hasPermission("divcore.chat.format") || player.isOp()) && message.startsWith(":.")) 
-			message = message.replace(":.", "");
-		else 
-			message = message.replace("\\", "\\\\").replace("\"", "\\\"");
+		
+		message = message.replace("\\", "\\\\");
+		if(player.hasPermission("divcore.chat.format")) message = message.replace("\\n", "\n");
+		
 		if(player.hasPermission("divcore.chat.color")) msg = Messenger.colorJSON(dp.getChatColor() + message.replace("&r", dp.getChatColor()));
 		else msg = new Message().add(message, dp.getChatColor());
 		

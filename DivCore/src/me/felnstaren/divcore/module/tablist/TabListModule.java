@@ -12,7 +12,7 @@ public class TabListModule implements Module {
 		TabListHandler.init(plugin, data.getConfigurationSection("player-list"));
 		
 		PluginManager pm = plugin.getServer().getPluginManager();
-		pm.registerEvents(new JoinLeaveInterceptor(), plugin);
+		pm.registerEvents(new TabListJoinListener(), plugin);
 	}
 	
 	public void disable() {

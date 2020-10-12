@@ -15,17 +15,34 @@ logger-priority: INFO
 chat-groups:
  default:
   chat-color: "#AAAA77"
-  chat-format: "%prefix%%name-color%%player%%suffix%   %chat-color%%message%"
+  chat-format: "&7[%chat-channel%&7] %prefix%%name-color%%player%%suffix%   %chat-color%%message%"
   prefix: ""
   suffix: ""
   name-color: "#FFFFAA"
  admin:
   chat-color: "#7777AA"
-  chat-format: "%prefix%%name-color%%player%%suffix%   %chat-color%%message%"
+  chat-format: "&7[%chat-channel%&7] %prefix%%name-color%%player%%suffix%   %chat-color%%message%"
   prefix: "#9999CC\u24B6"
   suffix: ""
   name-color: "#AAAAFF"
 
+
+# -----------------------------|
+#  CHAT CHANNEL CONFIGURATION  |
+# -----------------------------|
+chat-channels:
+ global:
+  label: "#999[#2F2Global#999]"
+ local:
+  label: "#999[#27FLocal#999]"
+  predicate:
+   - "world : same"
+   - "distance : 50"
+ admin:
+  permission: "divcore.chat.channel.admin"
+  label: "#999[#F22Admin#999]"
+  predicate:
+   - "permission : divcore.chat.channel.admin"
 
 ping-color: "#77FFAA"
 post-appension: false

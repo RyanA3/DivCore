@@ -9,7 +9,7 @@ import me.felnstaren.divcore.command.dchat.set.chatgroup.group.player.ChatSetPla
 import me.felnstaren.divcore.config.ChatVar;
 import me.felnstaren.divcore.config.DataPlayer;
 import me.felnstaren.divcore.config.Language;
-import me.felnstaren.divcore.config.chat.ChatGroupHandler;
+import me.felnstaren.divcore.config.chat.group.ChatGroupHandler;
 import me.felnstaren.divcore.util.chat.Messenger;
 
 public class ChatSetGroupArgument extends SubArgument {

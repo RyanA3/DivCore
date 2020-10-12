@@ -8,7 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.felnstaren.divcore.config.Language;
 import me.felnstaren.divcore.config.Loader;
 import me.felnstaren.divcore.config.Options;
-import me.felnstaren.divcore.config.chat.ChatGroupHandler;
+import me.felnstaren.divcore.config.chat.group.ChatGroupHandler;
 import me.felnstaren.divcore.logger.Logger;
 import me.felnstaren.divcore.module.Module;
 import me.felnstaren.divcore.module.chat.ChatModule;
@@ -21,8 +21,6 @@ public class DivCore extends JavaPlugin {
 
 	public void onEnable() {
 		Logger.init(this);
-		ChatGroupHandler.init();
-		
 		YamlConfiguration config = Loader.loadOrDefault("config.yml", "config.yml");
 		Options.load(config);
 		Language.load(Loader.loadOrDefault("lang.yml", "lang.yml"));

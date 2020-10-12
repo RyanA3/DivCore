@@ -1,4 +1,4 @@
-package me.felnstaren.divcore.config.chat;
+package me.felnstaren.divcore.config.chat.group;
 
 import org.bukkit.configuration.ConfigurationSection;
 

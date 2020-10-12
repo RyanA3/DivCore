@@ -1,22 +1,21 @@
-package me.felnstaren.divcore.config.chat;
+package me.felnstaren.divcore.config.chat.group;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import me.felnstaren.divcore.logger.Level;
-import me.felnstaren.divcore.logger.Logger;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 public class ChatGroupHandler {
 	
 	private static ChatGroupHandler HANDLER;
 	
-	public static void init() {
+	public static void init(YamlConfiguration config) {
 		if(HANDLER != null) return;
-		HANDLER = new ChatGroupHandler();
+		HANDLER = new ChatGroupHandler(config.getConfigurationSection("chat-groups"));
 	}
 	
 	public static ChatGroupHandler getInstance() {
-		if(HANDLER == null) init();
 		return HANDLER;
 	}
 	
@@ -24,13 +23,10 @@ public class ChatGroupHandler {
 
 	private Map<String, ChatGroup> chat_groups;
 	
-	public ChatGroupHandler() {
+	public ChatGroupHandler(ConfigurationSection data) {
 		chat_groups = new HashMap<String, ChatGroup>();
-	}
-	
-	public void addChatGroup(String name, ChatGroup group) {
-		if(hasChatGroup(name)) Logger.log(Level.WARNING, "Error, attempted to add a chat group when one with such name already existed: " + name);
-		else chat_groups.put(name, group);
+		for(String group : data.getKeys(false))
+			chat_groups.put(group, new ChatGroup(data.getConfigurationSection(group)));
 	}
 	
 	public ChatGroup getChatGroup(String name) {

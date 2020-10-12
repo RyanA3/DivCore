@@ -5,6 +5,7 @@ chat:
  prefix: "%group%"
  suffix: "%group%"
  name-color: "group"
+ chat-channel: "global"
 
 metrics:
  first-join-date: none

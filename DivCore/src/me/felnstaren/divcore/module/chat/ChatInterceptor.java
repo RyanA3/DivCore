@@ -10,6 +10,7 @@ import me.felnstaren.divcore.config.ChatVar;
 import me.felnstaren.divcore.config.DataPlayer;
 import me.felnstaren.divcore.config.Language;
 import me.felnstaren.divcore.config.Options;
+import me.felnstaren.divcore.config.chat.channel.ChatChannel;
 import me.felnstaren.divcore.util.ArrayUtil;
 import me.felnstaren.divcore.util.chat.Message;
 import me.felnstaren.divcore.util.chat.Messenger;
@@ -44,8 +45,11 @@ public class ChatInterceptor implements Listener {
 		else msg = new Message().add(message, dp.getChatColor());
 		
 		String built_message = title.append(msg).build();
-
+		ChatChannel channel = dp.getChatChannel();
+		
 		for(Player lp : Bukkit.getOnlinePlayers()) {
+			if(!channel.canReceive(lp, player)) continue;
+			
 			String send = built_message;
 			if(message.contains(lp.getDisplayName()) && !lp.equals(player)) {
 				if(player.hasPermission("divcore.chat.color")) send = title.append(Messenger.colorJSON(dp.getChatColor() + message.replace(lp.getDisplayName(), Options.ping_color + lp.getDisplayName() + dp.getChatColor()))).build();

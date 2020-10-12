@@ -1,30 +1,27 @@
 package me.felnstaren.divcore.config;
 
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import me.felnstaren.divcore.config.chat.ChatGroup;
-import me.felnstaren.divcore.config.chat.ChatGroupHandler;
+import me.felnstaren.divcore.config.chat.channel.ChatChannelHandler;
+import me.felnstaren.divcore.config.chat.group.ChatGroupHandler;
 import me.felnstaren.divcore.logger.Level;
 import me.felnstaren.divcore.logger.Logger;
 
 public class Options {
 
-	public static void load(YamlConfiguration data) {
-		Logger.getInstance().setPriority(Level.valueOf(data.getString("logger-priority")));
+	public static void load(YamlConfiguration config) {
+		Logger.getInstance().setPriority(Level.valueOf(config.getString("logger-priority")));
 		
-		ConfigurationSection groups = data.getConfigurationSection("chat-groups");
-		ChatGroupHandler ghandler = ChatGroupHandler.getInstance();
-		for(String group : groups.getKeys(false)) 
-			ghandler.addChatGroup(group, new ChatGroup(groups.getConfigurationSection(group)));
+		ChatGroupHandler.init(config);
+		ChatChannelHandler.init(config);
 		
-		join_format = data.getString("join-format");
-		leave_format = data.getString("leave-format");
-		player_list_format = data.getString("player-list.player-format");
+		join_format = config.getString("join-format");
+		leave_format = config.getString("leave-format");
+		player_list_format = config.getString("player-list.player-format");
 		
-		ping_color = data.getString("ping-color");
+		ping_color = config.getString("ping-color");
 		
-		post_appension = data.getBoolean("post-appension");
+		post_appension = config.getBoolean("post-appension");
 	}
 	
 	public static String join_format = "%prefix%%name-color%%player%%suffix% &7has joined the game";

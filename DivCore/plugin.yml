@@ -1,6 +1,6 @@
 name: DivCore
 main: me.felnstaren.divcore.DivCore
-version: 1.1.2a
+version: 1.2.0a
 author: Felnstaren
 description: Server development utilities
 api-version: 1.16
@@ -18,3 +18,6 @@ commands:
  unmute:
   aliases: []
   description: Unmute a player
+ channel:
+  aliases: [ch, chatchannel]
+  description: Change your chat channel

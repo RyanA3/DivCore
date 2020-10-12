@@ -5,6 +5,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
 import me.felnstaren.divcore.command.dchat.DChatMaster;
+import me.felnstaren.divcore.command.standalone.ChatChannelCommand;
 import me.felnstaren.divcore.command.standalone.EmoteCommandRegister;
 import me.felnstaren.divcore.command.standalone.MuteCommand;
 import me.felnstaren.divcore.command.standalone.UnmuteCommand;
@@ -27,6 +28,10 @@ public class ChatModule implements Module {
 		
 		plugin.getServer().getPluginCommand("mute").setExecutor(new MuteCommand());
 		plugin.getServer().getPluginCommand("unmute").setExecutor(new UnmuteCommand());
+		
+		ChatChannelCommand chat_channel_command = new ChatChannelCommand();
+		plugin.getServer().getPluginCommand("channel").setExecutor(chat_channel_command);
+		plugin.getServer().getPluginCommand("channel").setTabCompleter(chat_channel_command);
 		
 		EmoteCommandRegister emote_command_register = new EmoteCommandRegister(ControlCharacters.getCharacters());
 		emote_command_register.register(plugin);

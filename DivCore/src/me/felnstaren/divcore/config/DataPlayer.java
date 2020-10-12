@@ -5,7 +5,9 @@ import java.util.UUID;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import me.felnstaren.divcore.config.chat.ChatGroupHandler;
+import me.felnstaren.divcore.config.chat.channel.ChatChannel;
+import me.felnstaren.divcore.config.chat.channel.ChatChannelHandler;
+import me.felnstaren.divcore.config.chat.group.ChatGroupHandler;
 import me.felnstaren.divcore.logger.Level;
 import me.felnstaren.divcore.logger.Logger;
 import me.felnstaren.divcore.util.time.Time;
@@ -22,6 +24,7 @@ public class DataPlayer {
 	private String prefix = "%group%";
 	private String suffix = "%group%";
 	private String name_color = "group";
+	private String chat_channel = "global";
 	private Time muted = new Time(0, 0, 0, 0, 0);
 	
 	public DataPlayer(UUID uuid) {
@@ -44,6 +47,7 @@ public class DataPlayer {
 		prefix = data.getString("chat.prefix", "%group%");
 		suffix = data.getString("chat.suffix", "%group%");
 		name_color = data.getString("chat.name-color", "group");
+		chat_channel = data.getString("chat.chat-channel", "global");
 		
 		muted = new Time(data.getString("punishment.muted", "0s"));
 		
@@ -72,6 +76,7 @@ public class DataPlayer {
 		formatted = formatted.replace("%suffix%", !do_hex && getSuffix().contains("#") ? "" : getSuffix());
 		formatted = formatted.replace("%chat-color%", !do_hex && getChatColor().contains("#") ? "" : getChatColor());
 		formatted = formatted.replace("%chat-group%", getChatGroup());
+		formatted = formatted.replace("%chat-channel%", getChatChannel().getLabel());
 		return formatted;
 	}
 	
@@ -119,6 +124,10 @@ public class DataPlayer {
 	
 	public UUID getUUID() {
 		return uuid;
+	}
+	
+	public ChatChannel getChatChannel() {
+		return ChatChannelHandler.getInstance().getChatChannel(chat_channel);
 	}
 	
 	

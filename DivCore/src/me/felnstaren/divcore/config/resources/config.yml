@@ -15,13 +15,13 @@ logger-priority: INFO
 chat-groups:
  default:
   chat-color: "#AAAA77"
-  chat-format: "&7[%chat-channel%&7] %prefix%%name-color%%player%%suffix%   %chat-color%%message%"
+  chat-format: "%chat-channel% %prefix%%name-color%%player%%suffix%   %chat-color%%message%"
   prefix: ""
   suffix: ""
   name-color: "#FFFFAA"
  admin:
   chat-color: "#7777AA"
-  chat-format: "&7[%chat-channel%&7] %prefix%%name-color%%player%%suffix%   %chat-color%%message%"
+  chat-format: "%chat-channel% %prefix%%name-color%%player%%suffix%   %chat-color%%message%"
   prefix: "#9999CC\u24B6"
   suffix: ""
   name-color: "#AAAAFF"

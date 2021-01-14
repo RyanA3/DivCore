@@ -84,3 +84,6 @@ control-characters:
  - "/shrug : \u00AF\\_(\u30C4)_/\u00AF"
  - "/flip : (\u256F\u00B0\u25A1\u00B0)\u256F\uFE35 \u253B\u2501\u253B"
  - "/unflip : \u252C\u2500\u252C\u30CE( \u00BA _ \u00BA\u30CE)"
+ - " > :   "
+ - ">  :   "
+ - "> :   "

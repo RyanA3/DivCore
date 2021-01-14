@@ -34,6 +34,8 @@ public class ChatInterceptor implements Listener {
 			player.sendMessage(Language.msg("ifo.muted", new ChatVar("[Time]", remaining.toString())));
 			return;
 		}
+		
+		Bukkit.getServer().getConsoleSender().sendMessage("[CHAT] " + event.getPlayer().getName() + " > " + event.getMessage());
 
 		String format = dp.format(dp.getChatFormat().replace("%chat-color%", ""), player.getDisplayName(), true);	
 		String message = ControlCharacters.format(event.getMessage());

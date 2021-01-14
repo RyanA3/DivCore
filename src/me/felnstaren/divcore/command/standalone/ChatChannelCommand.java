@@ -34,22 +34,26 @@ public class ChatChannelCommand implements CommandExecutor, TabCompleter {
 			return true;
 		}
 		
-		if(!ChatChannelHandler.getInstance().hasChatChannel(args[0])) {
+		String ch_name = args[0];
+		for(String key : ChatChannelHandler.getInstance().getChannelKeys())
+			if(key.startsWith(ch_name)) ch_name = key;
+			
+		if(!ChatChannelHandler.getInstance().hasChatChannel(ch_name)) {
 			sender.sendMessage(Messenger.color("&7" + args[0] + " &cis not a chat channel!"));
 			return true;
 		}
 		
-		ChatChannel channel = ChatChannelHandler.getInstance().getChatChannel(args[0]);
+		ChatChannel channel = ChatChannelHandler.getInstance().getChatChannel(ch_name);
 		if(!channel.canEnter((Player) sender)) {
-			sender.sendMessage(Language.msg("err.no-permission", new ChatVar("[Permission]", args[0] + " chat")));
+			sender.sendMessage(Language.msg("err.no-permission", new ChatVar("[Permission]", ch_name + " chat")));
 			return true;
 		}
 		
 		DataPlayer dp = new DataPlayer((Player) sender);
-		dp.set("chat.chat-channel", args[0]);
+		dp.set("chat.chat-channel", ch_name);
 		dp.save();
 		
-		sender.sendMessage(Messenger.color("&aNow in &7[&8" + args[0] + "&7]"));
+		sender.sendMessage(Messenger.color("&aNow in &7[&8" + ch_name + "&7]"));
 		
 		return true;
 	}

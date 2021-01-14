@@ -3,6 +3,7 @@ package me.felnstaren.divcore.module.chat;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
@@ -18,9 +19,11 @@ import me.felnstaren.divcore.util.time.Time;
 
 public class ChatInterceptor implements Listener {
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onChat(AsyncPlayerChatEvent event) {
+		if(event.isCancelled()) return;
 		event.setCancelled(true);
+		
 		Player player = event.getPlayer();
 		DataPlayer dp = new DataPlayer(player);
 		

@@ -22,7 +22,7 @@ public class Messenger {
 			if(msg[i] != '&') continue;
 			if(msg.length <= i + 1) break;
 			if(DEFAULT_COLOR_CHARS.contains(Character.toString(msg[i + 1])))
-				msg[i] = '§';
+				msg[i] = 'Â§';
 		}
 		return new String(msg);
 	}
@@ -33,8 +33,8 @@ public class Messenger {
 		String newmsg = "";
 		
 		for(int i = 0; i < msg.length; i++) {
-			if(i > 0 && msg[i] != '§' && msg[i - 1] != '§') newmsg += msg[i];
-			if(i == 0 && msg[i] != '§') newmsg += msg[i];
+			if(i > 0 && msg[i] != 'ï¿½' && msg[i - 1] != 'ï¿½') newmsg += msg[i];
+			if(i == 0 && msg[i] != 'ï¿½') newmsg += msg[i];
 		}
 		
 		return newmsg;
